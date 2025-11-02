@@ -1,5 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useState, Fragment } from "react";
 import { useEffect } from "react";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+
 const initialTodos = [
   {
     id: 1,
@@ -30,9 +33,27 @@ export const TodoContext = createContext();
 export function TodoProvider({ children }) {
   const [todos, setTodos] = useState(getInitialTodos);
 
+  // --------------toast---------------------
+  // object shape: { open: boolean, message: string }
+  const [toast, setToast] = useState({ open: false, message: "" });
+
+  function showToast(message = "") {
+    setToast({ open: true, message });
+  }
+  function closeToast() {
+    setToast({ open: false, message: "" });
+  }
+  //----------------------toast-------------------------------------------------------
   function toggleTodo(id) {
     setTodos((task) =>
       task.map((t) => (t.id === id ? { ...t, isDone: !t.isDone } : t))
+    );
+    todos.map((t) =>
+      t.id === id
+        ? !t.isDone
+          ? showToast("تم اتمام المهمة")
+          : showToast("تم ارجاع المهمة الي الغير منجز")
+        : t
     );
   }
   //to use localStorage
@@ -53,6 +74,7 @@ export function TodoProvider({ children }) {
           : t
       )
     );
+    showToast("تم تعديل المهمة بنجاح");
   }
 
   function addTodo(todo) {
@@ -62,15 +84,26 @@ export function TodoProvider({ children }) {
     const newTodo = [...todos, todo];
     setTodos(newTodo);
     localStorage.setItem("todos", JSON.stringify(newTodo));
+    showToast("تم اضافة المهمة بنجاح");
   }
 
   function deleteTodo(id) {
     setTodos((task) => task.filter((t) => t.id !== id));
+    showToast("تم حذف المهمة بنجاح");
   }
 
   return (
     <TodoContext.Provider
-      value={{ todos, toggleTodo, addTodo, editTodo, deleteTodo }}
+      value={{
+        todos,
+        toggleTodo,
+        addTodo,
+        editTodo,
+        deleteTodo,
+        toast,
+        showToast,
+        closeToast,
+      }}
     >
       {children}
     </TodoContext.Provider>
