@@ -47,6 +47,5 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "react-scripts": "5.0.1"
-  },
-  "homepage": "https://magdynabil22.github.io/Todo-Today"
+  }
 }
