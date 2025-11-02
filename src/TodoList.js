@@ -1,5 +1,5 @@
 import { TodoContext } from "./context/TodoContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import TodoTask from "./TodoTask";
 import EditPopup from "./EditPopup";
 

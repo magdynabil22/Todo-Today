@@ -7,10 +7,7 @@ import { useState, useContext } from "react";
 import { TodoContext } from "./context/TodoContext";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import { Fragment } from "react";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
 export default function TodoLayout() {

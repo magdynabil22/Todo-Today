@@ -2,10 +2,7 @@ import { TodoContext } from "./context/TodoContext";
 import { useContext, useState } from "react";
 import TodoTask from "./TodoTask";
 import EditPopup from "./EditPopup";
-import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import { Fragment } from "react";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
 export default function DoneTodos() {
