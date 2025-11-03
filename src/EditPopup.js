@@ -11,8 +11,8 @@ export default function EditPopup({ id, onClose }) {
     return t.id === id;
   });
 
-  const [title, setTitle] = useState(taskEdit ? taskEdit.taskTitle : "");
-  const [desc, setDesc] = useState(taskEdit ? taskEdit.taskDescreption : "");
+  const [title, setTitle] = useState(taskEdit?.taskTitle || "");
+  const [desc, setDesc] = useState(taskEdit?.taskDescreption || "");
 
   function handleEditTask() {
     todoContext.editTodo(id, title, desc);

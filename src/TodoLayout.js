@@ -7,9 +7,6 @@ import { useState, useContext } from "react";
 import { TodoContext } from "./context/TodoContext";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-
 export default function TodoLayout() {
   const [inputValue, setInputValue] = useState("");
   const todoContext = useContext(TodoContext);
@@ -91,22 +88,6 @@ export default function TodoLayout() {
           />
         </Stack>
       </Stack>
-      {todoContext.toast && todoContext.toast.open && (
-        <Snackbar
-          open={todoContext.toast.open}
-          autoHideDuration={3000}
-          onClose={todoContext.closeToast}
-        >
-          <Alert
-            onClose={todoContext.closeToast}
-            severity="success"
-            variant="filled"
-            sx={{ width: "90%" }}
-          >
-            {todoContext.toast.message}
-          </Alert>
-        </Snackbar>
-      )}
     </>
   );
 }

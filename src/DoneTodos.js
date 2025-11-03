@@ -2,9 +2,6 @@ import { TodoContext } from "./context/TodoContext";
 import { useContext, useState } from "react";
 import TodoTask from "./TodoTask";
 import EditPopup from "./EditPopup";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
-
 export default function DoneTodos() {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const todoContext = useContext(TodoContext);
@@ -31,22 +28,6 @@ export default function DoneTodos() {
       {todoList}
       {editingTaskId && (
         <EditPopup id={editingTaskId} onClose={() => setEditingTaskId(null)} />
-      )}
-      {todoContext.toast && todoContext.toast.open && (
-        <Snackbar
-          open={todoContext.toast.open}
-          autoHideDuration={3000}
-          onClose={todoContext.closeToast}
-        >
-          <Alert
-            onClose={todoContext.closeToast}
-            severity="success"
-            variant="filled"
-            sx={{ width: "90%" }}
-          >
-            {todoContext.toast.message}
-          </Alert>
-        </Snackbar>
       )}
     </>
   );
